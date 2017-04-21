@@ -26,6 +26,8 @@ private:
 	// How far is the player reach in cm
 	float Reach = 100.f;
 	
+	FVector PlayerViewPointLocation;
+	FRotator PlayerViewPointRotattion;
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* InputComponent = nullptr;
 
@@ -43,4 +45,10 @@ private:
 
 	// return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
+
+	//Returns current start of reach line
+	const FVector GetReachLineStart();
+
+	//Returns current end of reach line
+	const FVector GetReachLineEnd();
 };
