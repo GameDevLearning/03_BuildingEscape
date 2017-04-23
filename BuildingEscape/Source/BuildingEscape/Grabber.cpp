@@ -56,6 +56,7 @@ void UGrabber::Grab()
 
 	/// If we hit something then attach a physics handle
 	if (ActorHit != nullptr) {
+		if (!PhysicsHandle) { return; }
 		PhysicsHandle->GrabComponent(
 			ComponentToGrab,
 			NAME_None,
@@ -69,6 +70,7 @@ void UGrabber::Grab()
 void UGrabber::Release()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab key Released"));
+	if (!PhysicsHandle) { return; }
 	PhysicsHandle->ReleaseComponent();
 }
 
@@ -83,6 +85,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		OUT PlayerViewPointLocation,
 		OUT PlayerViewPointRotattion
 	);
+
+	if (!PhysicsHandle) { return; }
 
 	// if the physics hanle is attached
 	if (PhysicsHandle->GrabbedComponent) {
